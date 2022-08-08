@@ -1,25 +1,18 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+import pytest
 
-link = "http://suninjuly.github.io/registration2.html"
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("-disable-features=RendererCodeIntegrity")
-browser = webdriver.Chrome(chrome_options=chrome_options)
+link = "http://suninjuly.github.io/registration1.html"
+options = webdriver.ChromeOptions()
+options.add_argument("-disable-features=RendererCodeIntegrity")
+browser = webdriver.Chrome(options=options)
 
 try:
     browser.get(link)
     # Ваш код, который заполняет обязательные поля
-    input3 = browser.find_element(by=By.XPATH, value="/html/body/div/form/div[1]/div[1]/input")
-    input3.send_keys("First name")
-    input4 = browser.find_element(by=By.XPATH, value="/html/body/div/form/div[1]/div[2]/input")
-    input4.send_keys("Last name")
-    input5 = browser.find_element(by=By.XPATH, value="/html/body/div/form/div[1]/div[3]/input")
-    input5.send_keys("Email")
 
-
-
-    input1 = browser.find_element(By.CSS_SELECTOR, "//input[@placeholder='Input your first name']")
+    input1 = browser.find_element(By.XPATH, "//input[@placeholder='Input your first name']")
     input1.send_keys("Ivan")
     input2 = browser.find_element(By.XPATH, "//input[@placeholder='Input your last name']")
     input2.send_keys("Popov")
@@ -44,7 +37,7 @@ try:
 
 finally:
     # ожидание чтобы визуально оценить результаты прохождения скрипта
-    time.sleep(10)
+    time.sleep(2)
     # закрываем браузер после всех манипуляций
     browser.quit()
 

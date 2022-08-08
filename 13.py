@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 import time
 import math
@@ -46,6 +47,10 @@ finally:
     browser.quit()
 
 
+def is_element_present(self, how, what):
+    try: self.driver.find_element(by=how, value=what)
+    except NoSuchElementException as e: return False
+    return True
 
 # не забываем оставить пустую строку в конце файла
 
